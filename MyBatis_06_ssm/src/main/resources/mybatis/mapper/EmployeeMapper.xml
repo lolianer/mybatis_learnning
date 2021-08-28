@@ -10,5 +10,10 @@
 		select id, last_name, gender, email  from tb1_employee where id = #{idsda}
 	</select>
 
+	<!--List<Employee> getEmps();-->
+	<select id="getEmps" resultType="com.swz.mybatis.bean.Employee">
+		select id, last_name, gender, email from tb1_employee
+	</select>
+
 	
 </mapper>

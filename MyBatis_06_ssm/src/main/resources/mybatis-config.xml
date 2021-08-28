@@ -5,9 +5,7 @@
 <configuration>
 	<!-- 1.mybatis可以使用properties来引入外部properties配置文件的内容 resource: url: -->
 
-	<properties resource="dbconfig.properties"></properties>
-
-
+<!--	<properties resource="dbconfig.properties"></properties>-->
 	<!-- -->
 
 	<settings>
@@ -19,7 +17,7 @@
 		<setting name="cacheEnabled" value="true"/>
 	</settings>
 
-	<environments default="development">
+	<!--<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
@@ -29,10 +27,12 @@
 				<property name="password" value="${jdbc.password}" />
 			</dataSource>
 		</environment>
-	</environments>
-	<mappers>
-		<!-- <mapper resource="EmployeeMapper.xml" /> -->
-<!--		<mapper class="com.swz.mybatis.dao.EmployeeMapper"/>-->
+	</environments>-->
+
+
+	<!--<mappers>
+		&lt;!&ndash; <mapper resource="EmployeeMapper.xml" /> &ndash;&gt;
+&lt;!&ndash;		<mapper class="com.swz.mybatis.dao.EmployeeMapper"/>&ndash;&gt;
 		<package name="com.swz.mybatis.dao"/>
-	</mappers>
+	</mappers>-->
 </configuration>
