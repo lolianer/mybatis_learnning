@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.swz.mybatis.bean.Employee;
 import com.swz.mybatis.dao.EmployeeMapper;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -47,6 +48,27 @@ public class MyBatisTest {
 			e.printStackTrace();
 		} finally {
 			openSession.close();
+		}
+	}
+
+	@Test
+	public void testBatch() {
+		SqlSession sqlSession = null;
+		try {
+			long start = System.currentTimeMillis();
+			SqlSessionFactory sqlSessionfactory = getSqlSessionfactory();
+			sqlSession = sqlSessionfactory.openSession();
+			EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+			for (int i = 0; i < 10000; i++) {
+				mapper.addEmp(new Employee(null, "lastName" + i,"email" + i, "1"));
+			}
+			sqlSession.commit();
+			long end = System.currentTimeMillis();
+			System.out.println(" 执行时长： "+ (end - start));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
 		}
 	}
 

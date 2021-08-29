@@ -38,6 +38,12 @@
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></property>
     </bean>
 
+    <!--配置一个可以进行批量执行的sqlSession  -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="SqlSessionFactoryBean"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
+
     <!--扫描所有的mapper接口的实现，让这些mapper能够自动注入-->
     <mybatis-spring:scan base-package="com.swz.mybatis.dao"></mybatis-spring:scan>
 </beans>
